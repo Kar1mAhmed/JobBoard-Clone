@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 JOB_TYPES = {
-    ('Full Time', 'Full Time'),
+    ('Full Time', 'Full Time'), 
     ('Part Time', 'Part Time')
 }
 
@@ -15,7 +15,7 @@ def upload_img(instance, filename):
 class Job(models.Model):
     title = models.CharField(max_length=100)
     #location = 
-    job_title = models.CharField(max_length=15, choices=JOB_TYPES)
+    job_time = models.CharField(max_length=15, choices=JOB_TYPES)
     job_description = models.TextField(max_length=1000)
     published_at = models.DateTimeField(auto_now=True)
     vacancy = models.IntegerField(default=1)
@@ -23,6 +23,7 @@ class Job(models.Model):
     experience = models.IntegerField(default=0)
     category = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True)
     image = models.ImageField(upload_to=upload_img)
+    country = models.CharField(max_length=30)
     
     
     def __str__(self) -> str:
