@@ -4,7 +4,7 @@ from .models import Job
 
 def job_list(requests):
     job_list = Job.objects.all()
-    context = {'job': job_list}
+    context = {'jobs': job_list}
     return render(requests, 'job/job_list.html', context)
 
 
