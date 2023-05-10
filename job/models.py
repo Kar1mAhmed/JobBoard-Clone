@@ -52,12 +52,16 @@ class Category(models.Model):
     
     
 
-class form(models.Model):
+class Form(models.Model):
     name = models.CharField(max_length=50)
     email = models.EmailField(max_length=30)
     website = models.CharField(max_length=30)
     cv = models.FileField(upload_to='forms/')
     cover_letter = models.TextField(max_length=200)
+    filled_at = models.DateTimeField(auto_now=True)
+    
+    job = models.ForeignKey(Job, related_name='apply_job', on_delete=models.CASCADE)
+
     
     def __str__(self):
         return self.name
