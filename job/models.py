@@ -29,6 +29,8 @@ class Job(models.Model):
     Qualifications = models.TextField(max_length=1000)
     Benefits = models.TextField(max_length=500)
     
+    slug = models.SlugField(blank=True, null=True)
+    
     
     def __str__(self) -> str:
         return self.title
