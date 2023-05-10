@@ -25,7 +25,9 @@ class Job(models.Model):
     image = models.ImageField(upload_to=upload_img)
     country = models.CharField(max_length=30)
     
-    
+    Responsibility = models.TextField(max_length=2000)
+    Qualifications = models.TextField(max_length=1000)
+    Benefits = models.TextField(max_length=500)
     
     
     def __str__(self) -> str:
