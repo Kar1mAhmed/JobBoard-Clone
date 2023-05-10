@@ -130,7 +130,7 @@
                                             <img src="img/svg_icon/1.svg" alt="">
                                         </div>
                                         <div class="jobs_conetent">
-                                            <a href="{% url 'jobs:job_details' job.id %}"><h4>{{job}}</h4></a>
+                                            <a href="{% url 'jobs:job_details' job.slug %}"><h4>{{job}}</h4></a>
                                             <div class="links_locat d-flex align-items-center">
                                                 <div class="location">
                                                     <p> <i class="fa fa-map-marker"></i> {{job.country}}</p>
@@ -144,7 +144,7 @@
                                     <div class="jobs_right">
                                         <div class="apply_now">
                                             <a class="heart_mark" href="#"> <i class="fa fa-heart"></i> </a>
-                                            <a href="{% url 'jobs:job_details' job.id %}" class="boxed-btn3">Apply Now</a>
+                                            <a href="{% url 'jobs:job_details' job.slug %}" class="boxed-btn3">Apply Now</a>
                                         </div>
                                         <div class="date">
                                             <p>{{job.published_at|date:'d M o'}}</p>

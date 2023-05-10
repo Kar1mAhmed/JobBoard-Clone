@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.utils.text import slugify
 # Create your models here.
 
 JOB_TYPES = {
@@ -31,6 +31,10 @@ class Job(models.Model):
     
     slug = models.SlugField(blank=True, null=True)
     
+    
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title, allow_unicode=True)
+        super(Job, self).save(*args, **kwargs)
     
     def __str__(self) -> str:
         return self.title

@@ -6,7 +6,7 @@ from django.core.paginator import Paginator
 def job_list(request):
     job_list = Job.objects.all()
     
-    paginator = Paginator(job_list, 1)
+    paginator = Paginator(job_list, 2)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     
@@ -17,7 +17,7 @@ def job_list(request):
     return render(request, 'job/job_list.html', context)
 
 
-def job_details(requests, id):
-    job = Job.objects.get(id=id)
+def job_details(requests, slug):
+    job = Job.objects.get(slug=slug)
     context = {'job' : job}
     return render(requests, 'job/job_details.html', context)
