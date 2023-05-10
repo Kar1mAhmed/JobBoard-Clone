@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="bradcam_text">
-                        <h3>4536+ Jobs Available</h3>
+                        <h3> Jobs Available</h3>
                     </div>
                 </div>
             </div>
@@ -130,13 +130,13 @@
                                             <img src="img/svg_icon/1.svg" alt="">
                                         </div>
                                         <div class="jobs_conetent">
-                                            <a href="job_details.html"><h4>{{job}}</h4></a>
+                                            <a href="{% url 'jobs:job_details' job.id %}"><h4>{{job}}</h4></a>
                                             <div class="links_locat d-flex align-items-center">
                                                 <div class="location">
                                                     <p> <i class="fa fa-map-marker"></i> {{job.country}}</p>
                                                 </div>
                                                 <div class="location">
-                                                    <p> <i class="fa fa-clock-o"></i>{{job.job_time}}</p>
+                                                    <p> <i class="fa fa-clock-o"></i>{{job.type}}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -147,7 +147,7 @@
                                             <a href="job_details.html" class="boxed-btn3">Apply Now</a>
                                         </div>
                                         <div class="date">
-                                            <p>Date line: {{job.published_at}}</p>
+                                            <p>{{job.published_at|date:'d M o'}}</p>
                                         </div>
                                     </div>
                                 </div>
