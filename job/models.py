@@ -21,7 +21,6 @@ class Job(models.Model):
     vacancy = models.IntegerField(default=1)
     salary = models.IntegerField(default=0)
     experience = models.IntegerField(default=0)
-    category = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True)
     image = models.ImageField(upload_to=upload_img)
     country = models.CharField(max_length=30)
     
@@ -31,6 +30,8 @@ class Job(models.Model):
     
     slug = models.SlugField(blank=True, null=True)
     
+    category = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True)
+
     
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title, allow_unicode=True)
@@ -48,3 +49,16 @@ class Category(models.Model):
     
     def __str__(self) -> str:
         return self.name
+    
+    
+
+class form(models.Model):
+    name = models.CharField(max_length=50)
+    email = models.EmailField(max_length=30)
+    website = models.CharField(max_length=30)
+    cv = models.FileField(upload_to='forms/')
+    cover_letter = models.TextField(max_length=200)
+    
+    def __str__(self):
+        return self.name
+    
