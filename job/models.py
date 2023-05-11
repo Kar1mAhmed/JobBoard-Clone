@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from django.contrib.auth.models import User
 # Create your models here.
 
 JOB_TYPES = {
@@ -30,6 +31,7 @@ class Job(models.Model):
     
     slug = models.SlugField(blank=True, null=True)
     
+    owner = models.ForeignKey(User, related_name='job_owner', on_delete=models.DO_NOTHING)
     category = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True)
 
     
