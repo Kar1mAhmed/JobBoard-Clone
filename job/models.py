@@ -14,6 +14,10 @@ def upload_img(instance, filename):
     return (f"jobs/{instance.id}.{extension}")
 
 class Job(models.Model):
+    owner = models.ForeignKey(User, related_name='job_owner', on_delete=models.DO_NOTHING)
+    category = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True)
+
+    
     title = models.CharField(max_length=100)
     #location = 
     type = models.CharField(max_length=15, choices=JOB_TYPES)
@@ -31,9 +35,6 @@ class Job(models.Model):
     
     slug = models.SlugField(blank=True, null=True)
     
-    owner = models.ForeignKey(User, related_name='job_owner', on_delete=models.DO_NOTHING)
-    category = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True)
-
     
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title, allow_unicode=True)
@@ -55,6 +56,9 @@ class Category(models.Model):
     
 
 class Form(models.Model):
+    job = models.ForeignKey(Job, related_name='apply_job', on_delete=models.CASCADE)
+
+    
     name = models.CharField(max_length=50)
     email = models.EmailField(max_length=30)
     website = models.CharField(max_length=30)
@@ -62,7 +66,6 @@ class Form(models.Model):
     cover_letter = models.TextField(max_length=200)
     filled_at = models.DateTimeField(auto_now=True)
     
-    job = models.ForeignKey(Job, related_name='apply_job', on_delete=models.CASCADE)
 
     
     def __str__(self):
