@@ -5,6 +5,8 @@ from django.urls import reverse
 
 from .models import Job
 
+from .filters import JobFilter
+
 from .form import FormApply
 from .form import FormAdd
 # Create your views here.
@@ -12,13 +14,19 @@ from .form import FormAdd
 def job_list(request):
     job_list = Job.objects.all()
     
+    my_filter = JobFilter(request.GET, queryset=job_list)
+    job_list = my_filter.qs
+    
     paginator = Paginator(job_list, 3)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     
+    ## Filter ## 
+    
     context = {
                 'jobs': page_obj,
-                'jobs_count' : len(job_list)
+                'jobs_count' : len(job_list),
+                'filter': my_filter
             }
     return render(request, 'job/job_list.html', context)
 
